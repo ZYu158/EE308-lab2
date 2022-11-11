@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>中秋节博饼游戏</title>
+
+<style>
+* { margin: 0;  padding: 0;font-family:'微软雅黑', '华文细黑', Arial; }
+#tu { width:100%; margin-top:85%;}
+#tu img { margin-left:4%; width:12%; float:left}
+#share img {margin-left:10%; width:35%; float:left }
+</style>
+
+</head>
+<body style="background:url(./src/image/spain.jpg); width:100%; background-repeat:no-repeat; background-size:cover;">
+    <br>
+    <br>
+    <br>
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="btnClink3()">退出</button>
+	<div id="tu">
+		<img src="/src/image/1.png" />
+		<img src="/src/image/2.png" /> 
+		<img src="/src/image/3.png" /> 
+		<img src="/src/image/4.png" /> 
+		<img src="/src/image/5.png" /> 
+		<img src="/src/image/6.png" />  
+	</div>
+	<div style="clear:both"></div>
+	<div id="start" style="text-align:center; display:block; margin-top:30px">
+		<img src="/src/image/start.png" style="width:30% ; margin:0 auto" />
+	</div>
+	<div id="share" style="display:none; width:100%; margin-top:30px">
+		<img id="restart" src="/src/image/btn1.png" />
+		<img id="fenxiang" src="/src/image/btn2.png" />
+	</div>
+	<div id="fuceng" style="display:none;width: 100%; height: 100%; position: fixed; z-index: 90; top: 0px; left: 0px; background-color:#000; filter:alpha(opacity=70); opacity:0.7;text-align:center;">
+	</div>
+	<div id="tishi" style="width: 100%; height: 172px; position: fixed; z-index: 90; top: 100px; left: 0px; text-align:center;display:none; color:#fff">点击右上角分享到朋友圈</div>
+	
+<script type="text/javascript">
+
+var h= Math.floor(Math.random() * 6) + 1;
+     b = Math.floor(Math.random() * 6) + 1;
+            c = Math.floor(Math.random() * 6) + 1;
+            d = Math.floor(Math.random() * 6) + 1;
+            e = Math.floor(Math.random() * 6) + 1;
+            f = Math.floor(Math.random() * 6) + 1;
+ 
+        // 数据进入数组，排序
+       
+var res=Math.round(12*(Math.random()));
+var oDiv=document.getElementById('tu');
+var aDiv=oDiv.getElementsByTagName('img');
+var timer='';
+var temp=0;
+var NumberArr=[];
+var start=document.getElementById('start');
+var share=document.getElementById('share');
+var restart=document.getElementById('restart');
+var fenxiang=document.getElementById('fenxiang');
+var fuceng=document.getElementById('fuceng');
+
+start.onclick=function(){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			for( var i=0; i<6; i++)
+				{
+					var a='';
+					a+=Math.ceil(Math.random()*6);
+					aDiv[i].src="/src/image/"+a+".png"
+					
+					}
+		
+			temp++;
+			if (temp>50)
+			{
+				clearInterval(timer);
+				
+			aDiv[0].src="/src/image/"+h+".png";
+            aDiv[1].src="/src/image/"+b+".png";
+            aDiv[2].src="/src/image/"+c+".png";
+			aDiv[3].src="/src/image/"+d+".png";
+            aDiv[4].src="/src/image/"+e+".png";	
+            aDiv[5].src="/src/image/"+f+".png";
+            
+
+ 
+        //  存储当前随机数组
+        var NumberArr = [];
+ 
+        
+ 
+        // 数据进入数组，排序
+        NumberArr.push(h, b, c, d, e, f);
+        NumberArr.sort();
+ 
+        //存储当前 “四” 的个数
+        var isfour = 0;
+ 
+        for (var i = 0; i < NumberArr.length; i++) {
+            if (NumberArr[i] == 4) {
+                isfour = isfour + 1;
+            }
+        }
+ 
+        // 判断 “四” 的个数属于哪一等级;
+        switch (isfour) {
+            case 1:
+                for (var i = 0; i < NumberArr.length; i++) {
+                    //存储当前相同的数量，判断是否为四进
+                    var ContrastArr = [];
+                    for (var j = 0; j < NumberArr.length; j++) {
+                        if (NumberArr[i] == NumberArr[j]) {
+                            ContrastArr.push(NumberArr[j]);
+                        }
+                    }
+                }
+                // 等到上面遍历执行完再进行判断属于哪个级别
+                if (ContrastArr.length === 4) {
+            var contant='<p style="color:#fff; font-size:16px; margin-top:30px">四进';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" //四进
+                    break;
+                } else if (ContrastArr.length === 5) {
+                    var contant='<p style="color:#fff; font-size:16px; margin-top:30px">五红';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"//五红
+                    break;
+                } else if (ContrastArr.length === 6) {
+                    var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了六红';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" //六红
+                    break;
+                } else {
+                    // 判断一下，是 "对堂"" or ”一秀“，对堂就是顺子，123456，一秀就是一个只有4；
+                    var isContinuityArray = false;
+                    var array = NumberArr;
+                    var arrayCount = array.length;
+                    for (var i = 0; i < arrayCount; i++) {
+                        var currentArr = Number(array[i]) + 1;
+                        var nestArr = Number(array[i + 1]);
+                        if (i + 1 == arrayCount) {
+                            currentArr = Number(array[i]);
+                            nestArr = Number(array[i]);
+                        }
+                        if (currentArr != nestArr) {
+                            isContinuityArray = false;
+                            break;
+                        } else {
+                            isContinuityArray = true;
+                        }
+                    }
+                    if (isContinuityArray) {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了对堂';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                        break;
+                    } else {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">一秀';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                        break;
+                    }
+                };
+                break;
+            case 2:
+                for (var i = 0; i < NumberArr.length; i++) {
+                    var ContrastArr = [];
+                    for (var j = 0; j < NumberArr.length; j++) {
+                        if (NumberArr[i] == NumberArr[j]) {
+                            ContrastArr.push(NumberArr[j]);
+                        }
+                    }
+                    // 判断是 4进 or 二举
+                    if (ContrastArr.length === 4) {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了四进';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                        break;
+                    } else {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了二举';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                    }
+                };
+                break;
+            case 3:
+            var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了三红';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                break;
+            case 4:
+                // 判断是 "普通状元" or "状元插金花"，普通就是4个四，插金花就是  4个四 + 2个1 ；
+                var one = 0;
+                for (var i = 0; i < NumberArr.length; i++) {
+                    if (NumberArr[i] === 1) {
+                        one = one + 1;
+                    }
+                }
+                if (one == 2) {
+                    var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了插金花';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" // 插金花
+                } else {
+                    var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了状元';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"; //普通状元
+                }
+                break;
+            case 5:
+            var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了五红五子';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" // 五红五子
+                break;
+            case 6:
+
+
+            var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了六红之子';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"; //六红六子
+                break;
+            default:
+                // 就是页面都没有四,来判断是否属于 “五子” 和 “六子” 和 “四进” 中的哪一种;
+                for (var i = 0; i < NumberArr.length; i++) {
+                    var ContrastArr = [];
+                    for (var j = 0; j < NumberArr.length; j++) {
+                        if (NumberArr[i] == NumberArr[j]) {
+                            ContrastArr.push(NumberArr[j]);
+                        }
+                    }
+                    if (ContrastArr.length === 4) {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了四进';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" //四进
+                        break;
+                    } else if (ContrastArr.length === 5) {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了五子';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"//五子
+                        break;
+                    } else if (ContrastArr.length === 6) {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">恭喜您获得了六子';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block" //六子
+                        break;
+                    } else {
+                        var contant='<p style="color:#fff; font-size:16px; margin-top:30px">很遗憾再接再厉';
+			contant+= '<span style="color:red; font-size:20px">'
+			
+			contant+='</span></p>';
+			start.innerHTML=contant
+			share.style.display="block"
+                    }
+                };
+                break;
+        }
+ 
+        
+
+
+			
+			}
+		restart.onclick=function(){
+			window.location.reload();
+			}
+		fenxiang.onclick=function(){
+			fuceng.style.display="block";
+			tishi.style.display="block";
+			}
+		fuceng.onclick=function(){
+			fuceng.style.display="none";
+			tishi.style.display="none";
+			}
+		tishi.onclick=function(){
+			fuceng.styltyle.display="block";
+			tishi.style.display="block";
+			}
+		fuceng.onclick=function(){
+			fuceng.style.display="none";
+			tishi.style.display="none";
+			}
+		tishi.onclick=function(){
+			fuceng.style.display="none";
+			tishi.style.display="none";
+			}
+	},30)
+	
+}
+
+function WeiXinShareBtn() {
+	WeixinJSBridge.invoke('shareTimeline', {
+		"title": "伞兵",
+		"desc": "关注我家咯咯，带你看更好笑的东西",
+		"img_url": "/src/image/logo.jpg"
+	});
+}
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+
+<p><br><br><br><a href="http://sc.chinaz.com/" target="_blank">祝你好运！</a></p>
+</div>
+
+</body>
+<script>
+    function btnClink3() {
+        window.location.href = "c.html";
+    }
+</script>
+</html>
